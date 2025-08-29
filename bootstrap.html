@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bootstrap Framework - ePortfolio</title>
+  <style>
+    :root {
+      --violet-1: #46266d;
+      --violet-2: #6f42c1;
+      --violet-3: #8773af;
+      --background-light: #fafafa;
+      --text-dark: #2d2d36;
+      --accent-yellow: #ffc107;
+      --font-header: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+      --border-radius: 12px;
+      --shadow: 0 4px 14px rgba(0,0,0,0.1);
+      --transition-speed: 0.3s;
+      --container-max-width: 900px;
+      --btn-primary-bg: #6f42c1;
+      --btn-primary-bg-hover: #553c99;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-body);
+      background-color: var(--background-light);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+    }
+    nav.navbar {
+      background: linear-gradient(135deg, var(--violet-1), var(--violet-2), var(--violet-3));
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 14px rgba(70, 38, 109, 0.75);
+    }
+    nav .brand {
+      color: white;
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-decoration: none;
+      user-select: none;
+    }
+    nav ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul.nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      user-select: none;
+    }
+    nav ul.nav-links li a:hover,
+    nav ul.nav-links li a.active {
+      background-color: var(--accent-yellow);
+      color: var(--violet-1);
+    }
+    nav .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 2rem;
+      color: white;
+      user-select: none;
+    }
+    @media (max-width: 768px) {
+      nav ul.nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        background: linear-gradient(135deg, var(--violet-1), var(--violet-2));
+        position: absolute;
+        top: 56px;
+        right: 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 6px 15px rgba(70, 38, 109, 0.55);
+        width: 180px;
+        user-select: none;
+      }
+      nav ul.nav-links.show {
+        display: flex;
+      }
+      nav .menu-toggle {
+        display: block;
+      }
+      nav ul.nav-links li a {
+        font-size: 1.1rem;
+        padding: 0.65rem 1.2rem;
+        color: white;
+        font-weight: 700;
+        border-radius: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      nav ul.nav-links li:last-child a {
+        border-bottom: none;
+      }
+    }
+    main.container {
+      max-width: var(--container-max-width);
+      margin: 4rem auto 3rem;
+      padding: 0 1rem;
+      flex-grow: 1;
+    }
+    main h1 {
+      font-family: var(--font-header);
+      font-size: 2.8rem;
+      margin-bottom: 0.75rem;
+      color: var(--violet-2);
+      text-align: center;
+      user-select: none;
+    }
+    main h2 {
+      font-family: var(--font-header);
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: var(--violet-3);
+      margin-bottom: 2.75rem;
+      text-align: center;
+      user-select: none;
+    }
+    section.card {
+      background: white;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      user-select: none;
+      text-align: center;
+    }
+    section.card h3 {
+      margin-bottom: 1rem;
+      color: var(--violet-2);
+      font-family: var(--font-header);
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    section.card p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    section.card ul {
+      list-style: disc;
+      margin-left: 1.5rem;
+      text-align: left;
+      margin-top: 1rem;
+      color: #555;
+    }
+    .btn-demo {
+      background-color: var(--violet-2);
+      color: white;
+      border-radius: var(--border-radius);
+      padding: 0.65rem 1.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.25s ease;
+      margin: 0.5rem;
+      user-select: none;
+    }
+    .btn-demo:hover {
+      background-color: var(--violet-3);
+      transform: scale(1.05);
+    }
+    footer.footer {
+      background: linear-gradient(135deg, var(--violet-1), var(--violet-2));
+      color: white;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-weight: 600;
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+      box-shadow: 0 -2px 8px rgba(70, 38, 109, 0.11);
+      user-select: none;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="home.html" class="brand">PRATIK PANTA</a>
+  <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="fullstack.html">Full Stack Development</a></li>
+    <li><a href="html.html">HTML</a></li>
+    <li><a href="css.html">CSS</a></li>
+    <li><a href="bootstrap.html" class="active">Bootstrap</a></li>
+    <li><a href="javascript.html">JavaScript</a></li>
+  </ul>
+</nav>
+
+<main class="container" role="main" aria-label="Bootstrap section content">
+  <section class="card">
+    <h1>Bootstrap Framework</h1>
+    <h2>Rapid and Responsive Web Design</h2>
+    <h3>What is Bootstrap?</h3>
+    <p>Bootstrap is a powerful CSS framework that enables developers to quickly create responsive, mobile-first websites using pre-built styles, components, and grid systems.</p>
+  </section>
+
+  <section class="card">
+    <h3>Core Features</h3>
+    <ul>
+      <li>Responsive Grid System: Fluid layout adjusted to screen sizes.</li>
+      <li>Pre-styled Components: Buttons, navbars, cards, modals and more.</li>
+      <li>Utility Classes: Quickly apply common styles without writing custom CSS.</li>
+      <li>Customizable and extensible to suit your branding.</li>
+    </ul>
+  </section>
+
+  <section class="card" aria-label="Bootstrap buttons example">
+    <h3>Bootstrap Example Buttons</h3>
+    <button class="btn-demo" aria-label="Primary button example">Primary Button</button>
+    <button class="btn-demo" aria-label="Secondary button example">Secondary Button</button>
+  </section>
+
+  <section class="card">
+    <h3>Why Use Bootstrap?</h3>
+    <p>Bootstrap accelerates development time, maintains consistent design across pages, and adapts smoothly across devices and screen sizes. It’s widely used in modern web development for its ease and flexibility.</p>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  &copy; 2025 PRATIK PANTA. All rights reserved.
+</footer>
+
+<script>
+  document.querySelector('.menu-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.toggle('show');
+  });
+</script>
+
+</body>
+</html>

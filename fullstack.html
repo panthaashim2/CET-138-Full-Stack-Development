@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Full Stack Development - ePortfolio</title>
+  <style>
+    :root {
+      --violet-1: #46266d;
+      --violet-2: #6f42c1;
+      --violet-3: #8773af;
+      --background-light: #fafafa;
+      --text-dark: #2d2d36;
+      --accent-yellow: #ffc107;
+      --font-header: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+      --border-radius: 12px;
+      --shadow: 0 4px 14px rgba(0,0,0,0.1);
+      --transition-speed: 0.3s;
+      --container-max-width: 960px;
+    }
+    * {box-sizing: border-box; margin:0; padding:0;}
+    html, body {
+      height: 100%;
+      margin: 0; padding: 0;
+      font-family: var(--font-body);
+      background-color: var(--background-light);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+    }
+    nav.navbar {
+      background: linear-gradient(135deg, var(--violet-1), var(--violet-2), var(--violet-3));
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky; top: 0; z-index: 999;
+      box-shadow: 0 4px 14px rgba(70, 38, 109, 0.75);
+    }
+    nav .brand {
+      color: white;
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-decoration: none;
+      user-select: none;
+    }
+    nav ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul.nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      user-select: none;
+    }
+    nav ul.nav-links li a:hover,
+    nav ul.nav-links li a.active {
+      background-color: var(--accent-yellow);
+      color: var(--violet-1);
+    }
+    nav .menu-toggle {
+      display: none; background: none;
+      border: none; cursor: pointer;
+      font-size: 2rem; color: white;
+      user-select: none;
+    }
+    @media (max-width: 768px) {
+      nav ul.nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        background: linear-gradient(135deg, var(--violet-1), var(--violet-2));
+        position: absolute;
+        top: 56px; right: 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 6px 15px rgba(70, 38, 109, 0.55);
+        width: 180px; user-select: none;
+      }
+      nav ul.nav-links.show { display: flex; }
+      nav .menu-toggle { display: block; }
+      nav ul.nav-links li a {
+        font-size: 1.1rem; padding: 0.65rem 1.2rem;
+        color: white; font-weight: 700;
+        border-radius: 12px; border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      nav ul.nav-links li:last-child a { border-bottom: none; }
+    }
+    main.container {
+      max-width: var(--container-max-width);
+      margin: 4rem auto 3rem;
+      padding: 0 1rem;
+      flex-grow: 1;
+    }
+    main h1 {
+      font-family: var(--font-header);
+      font-size: 2.8rem; margin-bottom: 0.5rem;
+      color: var(--violet-2); text-align: center;
+      user-select: none;
+    }
+    main h2 {
+      font-family: var(--font-header);
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: var(--violet-3);
+      margin-bottom: 3rem;
+      text-align: center;
+      user-select: none;
+    }
+    .cards-container {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      user-select: none;
+    }
+    article.card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      flex: 1 1 280px;
+      max-width: 320px;
+      cursor: default;
+      transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+    article.card:hover {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transform: translateY(-5px);
+    }
+    article.card h3 {
+      color: var(--violet-2);
+      font-family: var(--font-header);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-align: center;
+      user-select: none;
+    }
+    article.card ul {
+      list-style: none;
+      padding-left: 1.2rem;
+      color: #555;
+    }
+    article.card ul li {
+      margin-bottom: 0.7rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    article.card ul li::before {
+      content: '✔';
+      position: absolute;
+      left: 0;
+      color: var(--accent-yellow);
+      font-weight: 700;
+      user-select: none;
+    }
+    footer.footer {
+      background: linear-gradient(135deg, var(--violet-1), var(--violet-2));
+      color: white;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-weight: 600;
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+      box-shadow: 0 -2px 8px rgba(70, 38, 109, 0.11);
+      user-select: none;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="home.html" class="brand">PRATIK PANTA</a>
+  <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="fullstack.html" class="active">Full Stack Development</a></li>
+    <li><a href="html.html">HTML</a></li>
+    <li><a href="css.html">CSS</a></li>
+    <li><a href="bootstrap.html">Bootstrap</a></li>
+    <li><a href="javascript.html">JavaScript</a></li>
+  </ul>
+</nav>
+
+<main class="container" role="main" aria-label="Full Stack Development main content">
+  <h1>Full Stack Development</h1>
+  <h2>A Comprehensive Overview of Web Development Layers</h2>
+  <section class="cards-container">
+    <article class="card" aria-label="Front-End Development">
+      <h3>Front-End</h3>
+      <ul>
+        <li>HTML - Markup and page structure</li>
+        <li>CSS - Visual styling and responsive design</li>
+        <li>JavaScript - Interactive elements and DOM manipulation</li>
+        <li>Frameworks - React, Angular, Vue.js</li>
+      </ul>
+    </article>
+    <article class="card" aria-label="Back-End Development">
+      <h3>Back-End</h3>
+      <ul>
+        <li>Server technologies - Node.js, Express, Django, Ruby on Rails</li>
+        <li>Database management - MySQL, MongoDB, PostgreSQL</li>
+        <li>API creation and integration</li>
+        <li>Authentication and security</li>
+      </ul>
+    </article>
+    <article class="card" aria-label="Full Stack Developer Skills">
+      <h3>Full Stack Developer</h3>
+      <ul>
+        <li>Designing user-friendly interfaces</li>
+        <li>Creating RESTful APIs</li>
+        <li>Database schema design and queries</li>
+        <li>Deployment and DevOps basics</li>
+      </ul>
+    </article>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  &copy; 2025 PRATIK PANTA. All rights reserved.
+</footer>
+
+<script>
+  document.querySelector('.menu-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.toggle('show');
+  });
+</script>
+
+</body>
+</html>

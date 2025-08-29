@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HTML - ePortfolio</title>
+  <style>
+    :root {
+      --violet-1: #46266d;
+      --violet-2: #6f42c1;
+      --violet-3: #8773af;
+      --background-light: #fafafa;
+      --text-dark: #2d2d36;
+      --accent-yellow: #ffc107;
+      --font-header: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+      --border-radius: 12px;
+      --shadow: 0 4px 14px rgba(0,0,0,0.1);
+      --transition-speed: 0.3s;
+      --container-max-width: 900px;
+      --code-bg: #f4f7ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      margin: 0; padding: 0;
+      font-family: var(--font-body);
+      background-color: var(--background-light);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+    }
+    nav.navbar {
+      background: linear-gradient(135deg, var(--violet-1), var(--violet-2), var(--violet-3));
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky; top: 0; z-index: 999;
+      box-shadow: 0 4px 14px rgba(70, 38, 109, 0.75);
+    }
+    nav .brand {
+      color: white;
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-decoration: none;
+      user-select: none;
+    }
+    nav ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul.nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      user-select: none;
+    }
+    nav ul.nav-links li a:hover,
+    nav ul.nav-links li a.active {
+      background-color: var(--accent-yellow);
+      color: var(--violet-1);
+    }
+    nav .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 2rem;
+      color: white;
+      user-select: none;
+    }
+    @media (max-width: 768px) {
+      nav ul.nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        background: linear-gradient(135deg, var(--violet-1), var(--violet-2));
+        position: absolute;
+        top: 56px;
+        right: 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 6px 15px rgba(70, 38, 109, 0.55);
+        width: 180px;
+        user-select: none;
+      }
+      nav ul.nav-links.show {
+        display: flex;
+      }
+      nav .menu-toggle {
+        display: block;
+      }
+      nav ul.nav-links li a {
+        font-size: 1.1rem;
+        padding: 0.65rem 1.2rem;
+        color: white;
+        font-weight: 700;
+        border-radius: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      nav ul.nav-links li:last-child a {
+        border-bottom: none;
+      }
+    }
+    main.container {
+      max-width: var(--container-max-width);
+      margin: 4rem auto 3rem;
+      padding: 0 1rem;
+      flex-grow: 1;
+    }
+    main h1 {
+      font-family: var(--font-header);
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--violet-2);
+      text-align: center;
+      user-select: none;
+    }
+    main h2 {
+      font-family: var(--font-header);
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: var(--violet-3);
+      margin-bottom: 3rem;
+      text-align: center;
+      user-select: none;
+    }
+    section.card {
+      background: white;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      user-select: none;
+    }
+    section.card h3 {
+      margin-bottom: 1rem;
+      color: var(--violet-2);
+      font-family: var(--font-header);
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    section.card p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    section.card strong {
+      color: var(--violet-1);
+    }
+    .code-block {
+      background-color: var(--code-bg);
+      font-family: 'Courier New', Courier, monospace;
+      border-radius: var(--border-radius);
+      padding: 1rem 1.2rem;
+      font-size: 1rem;
+      white-space: pre-wrap;
+      line-height: 1.4;
+      box-shadow: inset 0 0 6px rgba(161, 161, 209, 0.6);
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    footer.footer {
+      background: linear-gradient(135deg, var(--violet-1), var(--violet-2));
+      color: white;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-weight: 600;
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+      box-shadow: 0 -2px 8px rgba(70, 38, 109, 0.11);
+      user-select: none;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="home.html" class="brand">PRATIK PANTA</a>
+  <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="fullstack.html">Full Stack Development</a></li>
+    <li><a href="html.html" class="active">HTML</a></li>
+    <li><a href="css.html">CSS</a></li>
+    <li><a href="bootstrap.html">Bootstrap</a></li>
+    <li><a href="javascript.html">JavaScript</a></li>
+  </ul>
+</nav>
+
+<main class="container" role="main" aria-label="HTML section content">
+  <section class="card">
+    <h1>HTML (HyperText Markup Language)</h1>
+    <h2>The Structure and Backbone of Web Pages</h2>
+    <h3>What is HTML?</h3>
+    <p>HTML is the core language used to create and define the structure of web pages. It consists of semantic elements that organize content such as headings, paragraphs, lists, images, links, and multimedia.</p>
+  </section>
+
+  <section class="card">
+    <h3>Semantic HTML Elements</h3>
+    <p>Using semantic tags improves accessibility, SEO, and makes code more readable:</p>
+    <p><strong>&lt;header&gt;</strong>: Defines the introductory content or navigation links.</p>
+    <p><strong>&lt;nav&gt;</strong>: Contains the navigation menu.</p>
+    <p><strong>&lt;main&gt;</strong>: The main content area of the web page.</p>
+    <p><strong>&lt;article&gt;</strong>: Defines a self-contained composition like a blog post.</p>
+    <p><strong>&lt;footer&gt;</strong>: Contains footer information like copyright.</p>
+  </section>
+
+  <section class="card">
+    <h3>Example HTML Structure</h3>
+    <div class="code-block" tabindex="0">
+      &lt;!DOCTYPE html&gt;<br>
+      &lt;html&gt;<br>
+      &nbsp;&nbsp;&lt;head&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Sample HTML Page&lt;/title&gt;<br>
+      &nbsp;&nbsp;&lt;/head&gt;<br>
+      &nbsp;&nbsp;&lt;body&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&lt;header&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Welcome to My Website&lt;/h1&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&lt;/header&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&lt;nav&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&lt;/nav&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&lt;main&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;This is a simple HTML page example.&lt;/p&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&lt;/main&gt;<br>
+      &nbsp;&nbsp;&lt;footer&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Copyright 2025&lt;/p&gt;<br>
+      &nbsp;&nbsp;&lt;/footer&gt;<br>
+      &lt;/body&gt;<br>
+      &lt;/html&gt;
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Forms, Tables, and Media</h3>
+    <p>HTML supports input forms, tabular data, images, and multimedia content to create interactive and informative web pages.</p>
+    <p>Examples include <code>&lt;form&gt;</code> for input collection, <code>&lt;table&gt;</code> for data display, and <code>&lt;img&gt;</code>, <code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code> for rich content.</p>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  &copy; 2025 PRATIK PANTA. All rights reserved.
+</footer>
+
+<script>
+  document.querySelector('.menu-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.toggle('show');
+  });
+</script>
+
+</body>
+</html>
